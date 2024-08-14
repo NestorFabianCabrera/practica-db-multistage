@@ -7,8 +7,6 @@ COPY package.json ./
 RUN npm install
 
 
-
-
 FROM node:alpine
 
 WORKDIR /app
