@@ -1,0 +1,24 @@
+services:
+  node_service:
+    build:
+      context: ./src/.
+      dockerfile: Dockerfile
+    container_name: node_container
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db_service
+    restart: always
+      
+  db_service:
+    image: mysql
+    restart: always
+    container_name: database_container
+    ports:
+      - "3306:3306"
+    volumes:
+      - /service_db:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: db_node
+
