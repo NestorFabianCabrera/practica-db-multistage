@@ -18,7 +18,7 @@ app.get('/', async (req, res) => {
 	try{
 		const [rows] = await pool.query('SELECT * FROM messages');
         
-        	let responseText = '<h1>Mensajes:</h1>';
+        	let responseText = '<h1>Mensajes presentes en la database:</h1>';
         	rows.forEach(row => {
             	responseText += `<p> -${row.text}</p>`;
         	});
@@ -33,7 +33,7 @@ app.get('/', async (req, res) => {
 app.get('/ping', async (req, res) => {
     try {
         const result = await pool.query('SELECT NOW()');
-        res.json(result[0])
+        res.send(result)
     } catch (error) {
         res.status(500).json({ error: 'Error al consultar la base de datos' });
     }
